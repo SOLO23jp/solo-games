@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SOLO GAMES — découvre et joue à des mini-jeux gratuits dans ton navigateur.">
+<title>SOLO GAMES — Joue sans limites</title>
+<style>
+:root{--bg:#090d1c;--panel:#121a30;--panel2:#192442;--text:#f5f7ff;--muted:#aab4d1;--purple:#8758ff;--cyan:#39d9e6;--pink:#ff5eaa}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#20245a 0,transparent 38%),var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}
+button,input{font:inherit}button{cursor:pointer;border:0}
+header{position:sticky;top:0;z-index:10;background:#090d1cdd;backdrop-filter:blur(14px);border-bottom:1px solid #ffffff16}
+.nav{max-width:1180px;margin:auto;padding:15px 22px;display:flex;align-items:center;gap:24px}.brand{font-size:22px;font-weight:900;letter-spacing:1px;white-space:nowrap}.brand span{color:var(--cyan)}.navlinks{display:flex;gap:20px;margin-left:auto}.navlinks a{color:var(--muted);text-decoration:none;font-weight:650;font-size:14px}.navlinks a:hover{color:white}.search{background:#171f38;border:1px solid #ffffff18;border-radius:12px;color:white;padding:10px 13px;width:190px;outline:none}.search:focus{border-color:var(--cyan)}
+main{max-width:1180px;margin:auto;padding:0 22px 60px}.hero{padding:62px 0 42px;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}.eyebrow{color:var(--cyan);font-weight:800;text-transform:uppercase;letter-spacing:2px;font-size:12px}.hero h1{font-size:clamp(38px,6vw,66px);line-height:1.02;margin:14px 0}.hero h1 em{font-style:normal;color:var(--cyan)}.hero p{color:var(--muted);font-size:17px;line-height:1.65;max-width:570px}.primary{background:linear-gradient(100deg,var(--purple),#5c75ff);color:white;padding:13px 19px;border-radius:12px;font-weight:800;box-shadow:0 8px 25px #765aff44}.hero-art{min-height:230px;border:1px solid #ffffff1c;border-radius:28px;background:linear-gradient(135deg,#34247b,#142c55 60%,#123c52);display:grid;place-items:center;position:relative;overflow:hidden}.hero-art:before,.hero-art:after{content:"";position:absolute;border-radius:50%;filter:blur(2px)}.hero-art:before{width:190px;height:190px;background:#8b5cff66;top:-60px;right:-20px}.hero-art:after{width:140px;height:140px;background:#30dce566;bottom:-55px;left:-25px}.controller{font-size:100px;z-index:1;filter:drop-shadow(0 12px 20px #0008)}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:28px 0 17px}.section-head h2{font-size:25px;margin:0}.section-head p{color:var(--muted);margin:5px 0 0;font-size:13px}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}.chip{background:#17213b;color:var(--muted);padding:8px 13px;border:1px solid #ffffff13;border-radius:30px;font-size:13px;font-weight:700}.chip.active,.chip:hover{background:#6547ce;color:white;border-color:transparent}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.game-card{background:linear-gradient(155deg,#192440,#10182b);border:1px solid #ffffff14;border-radius:18px;overflow:hidden;transition:.2s;cursor:pointer}.game-card:hover{transform:translateY(-5px);border-color:#8d70ff88;box-shadow:0 14px 30px #0005}.thumb{height:145px;display:grid;place-items:center;font-size:62px;position:relative}.thumb.purple{background:linear-gradient(135deg,#5634a8,#a45bd6)}.thumb.blue{background:linear-gradient(135deg,#155a9a,#31c5d5)}.thumb.pink{background:linear-gradient(135deg,#9c316e,#fa8b8b)}.thumb.green{background:linear-gradient(135deg,#176b55,#a2c85c)}.thumb.orange{background:linear-gradient(135deg,#a64b28,#f1ae48)}.thumb .tag{position:absolute;top:12px;left:12px;background:#090d1ccc;border-radius:20px;padding:5px 9px;font-size:10px;font-weight:800;letter-spacing:.5px}.card-body{padding:15px}.card-body h3{margin:0 0 6px;font-size:17px}.card-body p{margin:0;color:var(--muted);font-size:13px;line-height:1.45;min-height:38px}.card-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:14px}.play-small{background:#ffffff13;color:white;padding:8px 12px;border-radius:9px;font-weight:750}.play-small:hover{background:var(--purple)}.plays{font-size:12px;color:var(--muted)}
+.notice{margin-top:32px;background:#111b31;border:1px solid #ffffff16;border-radius:16px;padding:17px 19px;color:var(--muted);font-size:13px;line-height:1.6}.notice strong{color:white}
+footer{border-top:1px solid #ffffff16;color:var(--muted);text-align:center;padding:25px;font-size:12px}
+.modal{position:fixed;inset:0;background:#030611e8;z-index:30;display:none;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex}.modal-box{width:min(620px,100%);max-height:90vh;overflow:auto;background:#121a30;border:1px solid #ffffff25;border-radius:20px;padding:22px;box-shadow:0 25px 80px #0009}.modal-top{display:flex;justify-content:space-between;align-items:center}.modal-top h2{margin:0}.close{background:#ffffff15;color:white;border-radius:9px;width:36px;height:36px;font-size:20px}.game-area{margin-top:18px;background:#0a1021;border-radius:14px;padding:20px;min-height:230px;text-align:center}.game-area button{background:var(--purple);color:white;border-radius:10px;padding:10px 14px;font-weight:750;margin:5px}.game-area .secondary{background:#25314f}.big-number{font-size:48px;font-weight:900;color:var(--cyan);margin:15px}.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:360px;margin:15px auto}.memory-card{height:65px;background:#27345a;border-radius:10px;font-size:27px}.memory-card.revealed{background:#49368a}.board{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;max-width:280px;margin:15px auto}.cell{height:78px;background:#202b4b;border-radius:12px;font-size:35px;font-weight:900}.target{background:#173c3e!important}.small-note{color:var(--muted);font-size:12px}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding-top:40px}.hero-art{min-height:160px}.controller{font-size:75px}.grid{grid-template-columns:repeat(2,1fr)}.nav{flex-wrap:wrap;gap:12px}.navlinks{order:3;width:100%;margin:0}.search{margin-left:auto;width:150px}}
+@media(max-width:480px){.grid{grid-template-columns:1fr}.navlinks{gap:14px}.navlinks a{font-size:12px}.search{width:125px}.hero p{font-size:15px}}
+</style>
+</head>
+<body>
+<header><nav class="nav">
+  <div class="brand">SOLO <span>GAMES</span></div>
+  <div class="navlinks"><a href="#accueil">Accueil</a><a href="#jeux">Découvrir</a><a href="#apropos">À propos</a></div>
+  <input id="search" class="search" type="search" placeholder="Rechercher un jeu..." aria-label="Rechercher un jeu">
+</nav></header>
+<main>
+<section class="hero" id="accueil">
+ <div><div class="eyebrow">✦ Ton univers gaming</div><h1>Entre dans le jeu.<br><em>Amuse-toi !</em></h1>
+ <p>Découvre des mini-jeux gratuits, relève des défis et bats tes meilleurs scores. Tout se passe directement dans ton navigateur.</p>
+ <button class="primary" onclick="document.querySelector('#jeux').scrollIntoView({behavior:'smooth'})">Découvrir les jeux&nbsp; →</button></div>
+ <div class="hero-art" aria-label="Manette de jeu décorative"><div class="controller">🎮</div></div>
+</section>
+<section id="jeux">
+ <div class="section-head"><div><h2>🔥 Découvrir les jeux</h2><p>Choisis un jeu et lance-toi !</p></div></div>
+ <div class="chips"><button class="chip active" data-filter="Tous">Tous</button><button class="chip" data-filter="Réflexe">Réflexe</button><button class="chip" data-filter="Mémoire">Mémoire</button><button class="chip" data-filter="Classique">Classique</button></div>
+ <div class="grid" id="gameGrid">
+  <article class="game-card" data-name="Défi réflexe" data-category="Réflexe" onclick="openGame('reflex')"><div class="thumb blue"><span class="tag">RÉFLEXE</span>⚡</div><div class="card-body"><h3>Défi réflexe</h3><p>Attends le signal vert et clique aussi vite que possible.</p><div class="card-bottom"><span class="plays">⏱️ Défi rapide</span><button class="play-small">Jouer ▶</button></div></div></article>
+  <article class="game-card" data-name="Mémo magique" data-category="Mémoire" onclick="openGame('memory')"><div class="thumb purple"><span class="tag">MÉMOIRE</span>🧠</div><div class="card-body"><h3>Mémo magique</h3><p>Retrouve les paires d'images identiques.</p><div class="card-bottom"><span class="plays">🃏 8 paires</span><button class="play-small">Jouer ▶</button></div></div></article>
+  <article class="game-card" data-name="Morpion" data-category="Classique" onclick="openGame('tic')"><div class="thumb pink"><span class="tag">CLASSIQUE</span>⭕</div><div class="card-body"><h3>Morpion</h3><p>Aligne trois symboles avant l'ordinateur.</p><div class="card-bottom"><span class="plays">❌ Solo</span><button class="play-small">Jouer ▶</button></div></div></article>
+  <article class="game-card" data-name="Compte les étoiles" data-category="Réflexe" onclick="openGame('stars')"><div class="thumb orange"><span class="tag">RAPIDITÉ</span>⭐</div><div class="card-body"><h3>Compte les étoiles</h3><p>Clique sur les étoiles et marque un maximum de points en 15 secondes.</p><div class="card-bottom"><span class="plays">⭐ 15 secondes</span><button class="play-small">Jouer ▶</button></div></div></article>
+  <article class="game-card" data-name="Pierre feuille ciseaux" data-category="Classique" onclick="openGame('rps')"><div class="thumb green"><span class="tag">CLASSIQUE</span>✊</div><div class="card-body"><h3>Pierre-feuille-ciseaux</h3><p>Défie l'ordinateur dans ce jeu incontournable.</p><div class="card-bottom"><span class="plays">✌️ Duel</span><button class="play-small">Jouer ▶</button></div></div></article>
+  <article class="game-card" data-name="Mini quiz" data-category="Mémoire" onclick="openGame('quiz')"><div class="thumb blue"><span class="tag">QUIZ</span>💡</div><div class="card-body"><h3>Mini quiz</h3><p>Teste tes connaissances avec quelques questions.</p><div class="card-bottom"><span class="plays">📚 5 questions</span><button class="play-small">Jouer ▶</button></div></div></article>
+ </div>
+ <p id="empty" class="small-note" hidden>Aucun jeu trouvé. Essaie un autre mot.</p>
+</section>
+<section id="apropos" class="notice"><strong>Bienvenue sur SOLO GAMES !</strong><br>Ce site est une première version avec des mini-jeux originaux intégrés. Tu pourras ensuite ajouter des jeux externes uniquement lorsque leurs créateurs autorisent l'intégration. Les scores de cette version sont temporaires et restent dans la session du navigateur.</section>
+</main>
+<footer>© 2026 SOLO GAMES · Créé pour jouer et s'amuser.</footer>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-box"><div class="modal-top"><h2 id="modalTitle">Jeu</h2><button class="close" onclick="closeGame()" aria-label="Fermer">×</button></div><div class="game-area" id="gameArea"></div></div></div>
+<script>
+const modal=document.getElementById('modal'), area=document.getElementById('gameArea'), title=document.getElementById('modalTitle');
+let timers=[];
+function clearTimers(){timers.forEach(clearTimeout);timers=[]}
+function closeGame(){clearTimers();modal.classList.remove('open');area.innerHTML=''}
+function show(name,html){title.textContent=name;area.innerHTML=html;modal.classList.add('open')}
+function openGame(which){
+ clearTimers();
+ if(which==='reflex') reflex();
+ if(which==='memory') memory();
+ if(which==='tic') tic();
+ if(which==='stars') stars();
+ if(which==='rps') rps();
+ if(which==='quiz') quiz();
+}
+function reflex(){
+ show('⚡ Défi réflexe',`<p id="refText">Clique sur « Commencer », puis attends que le fond devienne vert.</p><div class="big-number" id="refTime">—</div><button id="refStart">Commencer</button>`);
+ let state='ready',start=0;
+ document.getElementById('refStart').onclick=()=>{state='wait';let t=document.getElementById('refText');t.textContent='Patience... ne clique pas encore !';let b=document.getElementById('refStart');b.disabled=true;b.textContent='Attends...';let delay=1500+Math.random()*3000;timers.push(setTimeout(()=>{state='go';start=performance.now();area.style.background='#14523f';t.textContent='MAINTENANT ! Clique vite !';b.disabled=false;b.textContent='CLIQUE !'},delay))};
+ document.getElementById('refStart').addEventListener('click',()=>{if(state==='go'){let ms=Math.round(performance.now()-start);document.getElementById('refTime').textContent=ms+' ms';document.getElementById('refText').textContent='Ton temps de réaction !';document.getElementById('refStart').textContent='Rejouer';document.getElementById('refStart').disabled=false;area.style.background='#0a1021';state='done'}else if(state==='wait'){clearTimers();state='ready';document.getElementById('refText').textContent='Trop tôt ! Recommence et attends le vert.';document.getElementById('refStart').disabled=false;document.getElementById('refStart').textContent='Réessayer';area.style.background='#0a1021'}});
+}
+function memory(){
+ const icons=['🍓','🚀','🐱','⚽','🌈','🍕','🎧','🌻'];let deck=[...icons,...icons].sort(()=>Math.random()-.5),first=null,lock=false,matched=0,moves=0;
+ show('🧠 Mémo magique',`<p id="memInfo">Trouve les 8 paires. Coups : 0</p><div class="memory-grid" id="memGrid"></div><button id="memAgain">Recommencer</button>`);
+ const grid=document.getElementById('memGrid');
+ deck.forEach((v,i)=>{let b=document.createElement('button');b.className='memory-card';b.textContent='?';b.onclick=()=>{if(lock||b.classList.contains('revealed'))return;b.textContent=v;b.classList.add('revealed');if(!first){first={v,b};return}moves++;if(first.v===v){matched++;first=null;document.getElementById('memInfo').textContent=`Paires : ${matched}/8 · Coups : ${moves}`;if(matched===8)document.getElementById('memInfo').textContent=`Bravo ! Toutes les paires trouvées en ${moves} coups !`}else{lock=true;let old=first.b;first=null;timers.push(setTimeout(()=>{b.textContent='?';old.textContent='?';b.classList.remove('revealed');old.classList.remove('revealed');lock=false;document.getElementById('memInfo').textContent=`Trouve les 8 paires. Coups : ${moves}`},700))}};grid.appendChild(b)});
+ document.getElementById('memAgain').onclick=()=>memory();
+}
+function tic(){
+ show('⭕ Morpion',`<p id="ticInfo">Tu joues avec X. À toi !</p><div class="board" id="board"></div><button id="ticAgain">Recommencer</button>`);
+ let cells=Array(9).fill(''),over=false;const wins=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+ const board=document.getElementById('board'),info=document.getElementById('ticInfo');
+ function winner(){for(let w of wins)if(cells[w[0]]&&cells[w[0]]===cells[w[1]]&&cells[w[1]]===cells[w[2]])return cells[w[0]];return cells.every(Boolean)?'draw':null}
+ function draw(){board.innerHTML='';cells.forEach((v,i)=>{let b=document.createElement('button');b.className='cell';b.textContent=v;b.onclick=()=>move(i);board.appendChild(b)})}
+ function finish(){let w=winner();if(w){over=true;info.textContent=w==='draw'?'Match nul !':w==='X'?'Bravo, tu as gagné !':'L’ordinateur a gagné !';return true}return false}
+ function move(i){if(over||cells[i])return;cells[i]='X';draw();if(finish())return;let available=cells.map((v,j)=>v?null:j).filter(v=>v!==null);let pick=available[Math.floor(Math.random()*available.length)];cells[pick]='O';draw();finish()}
+ document.getElementById('ticAgain').onclick=()=>tic();draw();
+}
+function stars(){
+ show('⭐ Compte les étoiles',`<p id="starInfo">Clique sur les étoiles pendant 15 secondes !</p><div class="big-number" id="starScore">0</div><div id="starPlay"><button id="starStart">Commencer</button></div>`);
+ let score=0,left=15,active=false,interval;
+ document.getElementById('starStart').onclick=()=>{if(active)return;active=true;let play=document.getElementById('starPlay');function spawn(){play.innerHTML='';let b=document.createElement('button');b.textContent='⭐';b.style.fontSize='42px';b.style.background='#27345a';b.onclick=()=>{if(active){score++;document.getElementById('starScore').textContent=score;spawn()}};play.appendChild(b)}spawn();document.getElementById('starInfo').textContent='Temps restant : 15 s';interval=setInterval(()=>{left--;document.getElementById('starInfo').textContent='Temps restant : '+left+' s';if(left<=0){clearInterval(interval);active=false;play.innerHTML='<b>Terminé !</b><br><button id="starAgain">Rejouer</button>';document.getElementById('starAgain').onclick=stars}},1000);timers.push(interval)};
+}
+function rps(){
+ show('✊ Pierre-feuille-ciseaux',`<p>Choisis ton coup !</p><div><button data-r="Pierre">✊ Pierre</button><button data-r="Feuille">✋ Feuille</button><button data-r="Ciseaux">✌️ Ciseaux</button></div><div class="big-number" id="rpsResult">VS</div><p id="rpsScore">Toi : 0 · Ordi : 0</p>`);
+ let you=0,pc=0,opts=['Pierre','Feuille','Ciseaux'];area.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{let a=b.dataset.r,c=opts[Math.floor(Math.random()*3)],win=a===c?'Égalité !':(a==='Pierre'&&c==='Ciseaux'||a==='Feuille'&&c==='Pierre'||a==='Ciseaux'&&c==='Feuille')?'Tu gagnes !':'L’ordinateur gagne !';if(win==='Tu gagnes !')you++;if(win==='L’ordinateur gagne !')pc++;document.getElementById('rpsResult').textContent=a+' / '+c;document.getElementById('rpsScore').textContent=win+'  ·  Toi : '+you+' · Ordi : '+pc});
+}
+function quiz(){
+ const qs=[['Combien font 7 × 8 ?',['54','56','64'],1],['Quelle planète est surnommée la planète rouge ?',['Mars','Vénus','Jupiter'],0],['Combien de côtés a un hexagone ?',['5','6','8'],1],['Quel animal miaule ?',['Chien','Chat','Cheval'],1],['Quelle étoile éclaire la Terre ?',['Soleil','Sirius','Lune'],0]];
+ let i=0,score=0;function render(){if(i===qs.length){show('💡 Mini quiz',`<h3>Quiz terminé !</h3><div class="big-number">${score}/5</div><p>Ton score final</p><button id="quizAgain">Rejouer</button>`);document.getElementById('quizAgain').onclick=()=>quiz();return}
+ let q=qs[i];show('💡 Mini quiz',`<p>Question ${i+1}/5</p><h3>${q[0]}</h3><div id="quizOpts">${q[1].map((a,j)=>`<button data-q="${j}">${a}</button>`).join('')}</div><p id="quizFeedback"></p>`);area.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{area.querySelectorAll('[data-q]').forEach(x=>x.disabled=true);let good=Number(b.dataset.q)===q[2];if(good)score++;document.getElementById('quizFeedback').textContent=good?'Bonne réponse !':'Pas tout à fait. Bonne réponse : '+q[1][q[2]];let next=document.createElement('button');next.textContent=i===4?'Voir mon score':'Question suivante';next.onclick=()=>{i++;render()};area.appendChild(next)})}render();
+}
+document.querySelectorAll('.chip').forEach(ch=>ch.onclick=()=>{document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));ch.classList.add('active');filterGames()});
+function filterGames(){let category=document.querySelector('.chip.active').dataset.filter,query=document.getElementById('search').value.toLowerCase(),shown=0;document.querySelectorAll('.game-card').forEach(c=>{let ok=(category==='Tous'||c.dataset.category===category)&&c.dataset.name.toLowerCase().includes(query);c.style.display=ok?'':'none';if(ok)shown++});document.getElementById('empty').hidden=shown!==0}
+document.getElementById('search').addEventListener('input',filterGames);
+modal.addEventListener('click',e=>{if(e.target===modal)closeGame()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGame()});
+</script>
+</body>
+</html>
